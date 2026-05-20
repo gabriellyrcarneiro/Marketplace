@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Marketplace Local</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Marketplace Local">
+        <span class="brand-mark">ML</span>
+        <span>
+          <strong>Marketplace Local</strong>
+          <small>Produtos e servicos perto de voce</small>
+        </span>
+      </a>
+
+      <nav class="top-actions" aria-label="Acoes principais">
+        <button class="ghost-button" type="button" data-scroll-target="seller-form">Novo vendedor</button>
+        <button class="primary-button" type="button" data-scroll-target="listing-form">Novo anuncio</button>
+      </nav>
+    </header>
+
+    <main id="top" class="app-shell">
+      <section class="summary-grid" aria-label="Resumo do marketplace">
+        <article class="metric-box accent-ink">
+          <span>Vendedores</span>
+          <strong id="seller-count">0</strong>
+        </article>
+        <article class="metric-box accent-green">
+          <span>Anuncios ativos</span>
+          <strong id="listing-count">0</strong>
+        </article>
+        <article class="metric-box accent-coral">
+          <span>Favoritos</span>
+          <strong id="favorite-count">0</strong>
+        </article>
+        <article class="metric-box accent-blue">
+          <span>Mensagens</span>
+          <strong id="message-count">0</strong>
+        </article>
+      </section>
+
+      <section class="workspace-grid">
+        <aside class="control-panel" aria-label="Controles do marketplace">
+          <section class="panel-section">
+            <div class="section-title">
+              <h2>Busca</h2>
+              <button class="icon-button" type="button" id="clear-filters" title="Limpar filtros" aria-label="Limpar filtros">x</button>
+            </div>
+
+            <label class="field-label" for="search-input">Termo</label>
+            <input id="search-input" class="field" type="search" placeholder="Ex.: bolo, bike, aula">
+
+            <div class="field-row">
+              <label>
+                <span class="field-label">Tipo</span>
+                <select id="type-filter" class="field">
+                  <option value="">Todos</option>
+                  <option value="Produto">Produto</option>
+                  <option value="Servico">Servico</option>
+                </select>
+              </label>
+              <label>
+                <span class="field-label">Categoria</span>
+                <select id="category-filter" class="field"></select>
+              </label>
+            </div>
+
+            <div class="field-row">
+              <label>
+                <span class="field-label">Cidade</span>
+                <select id="city-filter" class="field"></select>
+              </label>
+              <label>
+                <span class="field-label">Preco max.</span>
+                <input id="max-price-filter" class="field" type="number" min="0" step="1" placeholder="R$">
+              </label>
+            </div>
+
+            <label class="field-label" for="sort-filter">Ordenar</label>
+            <select id="sort-filter" class="field">
+              <option value="recent">Mais recentes</option>
+              <option value="rating">Melhor avaliados</option>
+              <option value="priceAsc">Menor preco</option>
+              <option value="priceDesc">Maior preco</option>
+            </select>
+          </section>
+
+          <form class="panel-section" id="seller-form">
+            <div class="section-title">
+              <h2>Vendedor</h2>
+              <span class="status-pill">Cadastro</span>
+            </div>
+
+            <label class="field-label" for="seller-name">Nome</label>
+            <input id="seller-name" class="field" name="name" required maxlength="80" placeholder="Nome do vendedor">
+
+            <div class="field-row">
+              <label>
+                <span class="field-label">Cidade</span>
+                <input id="seller-city" class="field" name="city" required maxlength="60" placeholder="Bairro ou cidade">
+              </label>
+              <label>
+                <span class="field-label">Segmento</span>
+                <input id="seller-segment" class="field" name="segment" required maxlength="60" placeholder="Ex.: alimentos">
+              </label>
+            </div>
+
+            <label class="field-label" for="seller-contact">Contato</label>
+            <input id="seller-contact" class="field" name="contact" required maxlength="80" placeholder="WhatsApp ou email">
+
+            <label class="field-label" for="seller-bio">Bio</label>
+            <textarea id="seller-bio" class="field" name="bio" rows="3" maxlength="220" placeholder="Pequena apresentacao"></textarea>
+
+            <button class="primary-button full-width" type="submit">Cadastrar vendedor</button>
+          </form>
+
+          <form class="panel-section" id="listing-form">
+            <div class="section-title">
+              <h2>Anuncio</h2>
+              <span class="status-pill">Produto ou servico</span>
+            </div>
+
+            <label class="field-label" for="listing-seller">Vendedor</label>
+            <select id="listing-seller" class="field" name="sellerId" required></select>
+
+            <label class="field-label" for="listing-title">Titulo</label>
+            <input id="listing-title" class="field" name="title" required maxlength="90" placeholder="Nome do produto ou servico">
+
+            <div class="field-row">
+              <label>
+                <span class="field-label">Tipo</span>
+                <select id="listing-type" class="field" name="type" required>
+                  <option value="Produto">Produto</option>
+                  <option value="Servico">Servico</option>
+                </select>
+              </label>
+              <label>
+                <span class="field-label">Categoria</span>
+                <select id="listing-category" class="field" name="category" required></select>
+              </label>
+            </div>
+
+            <label class="field-label" for="listing-price">Preco</label>
+            <input id="listing-price" class="field" name="price" type="number" required min="0" step="0.01" placeholder="0,00">
+
+            <label class="field-label" for="listing-description">Descricao</label>
+            <textarea id="listing-description" class="field" name="description" rows="4" required maxlength="360" placeholder="Detalhes do anuncio"></textarea>
+
+            <label class="field-label" for="listing-image">Imagem</label>
+            <input id="listing-image" class="field file-field" name="image" type="file" accept="image/*">
+            <img id="image-preview" class="image-preview" alt="" hidden>
+
+            <button class="primary-button full-width" type="submit">Publicar anuncio</button>
+          </form>
+
+          <section class="panel-section">
+            <div class="section-title">
+              <h2>Dados</h2>
+              <span class="status-pill">Local</span>
+            </div>
+            <div class="split-actions">
+              <button class="ghost-button" type="button" id="export-data">Exportar</button>
+              <label class="ghost-button import-label" for="import-data">Importar</label>
+              <input id="import-data" class="visually-hidden" type="file" accept="application/json">
+            </div>
+            <button class="danger-button full-width" type="button" id="reset-demo">Restaurar demo</button>
+          </section>
+        </aside>
+
+        <section class="market-area" aria-label="Vitrine de anuncios">
+          <div class="market-header">
+            <div>
+              <p class="kicker">Vitrine</p>
+              <h1>Anuncios da comunidade</h1>
+            </div>
+            <span id="result-count" class="result-count">0 resultados</span>
+          </div>
+          <div id="listing-grid" class="listing-grid"></div>
+        </section>
+      </section>
+
+      <section class="activity-grid" aria-label="Atividades">
+        <article class="activity-panel">
+          <div class="section-title">
+            <h2>Favoritos</h2>
+            <span id="favorite-label" class="status-pill">0 salvos</span>
+          </div>
+          <div id="favorite-list" class="compact-list"></div>
+        </article>
+
+        <article class="activity-panel">
+          <div class="section-title">
+            <h2>Mensagens</h2>
+            <span id="message-label" class="status-pill">0 conversas</span>
+          </div>
+          <div id="message-list" class="compact-list"></div>
+        </article>
+
+        <article class="activity-panel">
+          <div class="section-title">
+            <h2>Avaliacoes</h2>
+            <span id="review-label" class="status-pill">0 notas</span>
+          </div>
+          <div id="review-list" class="compact-list"></div>
+        </article>
+      </section>
+    </main>
+
+    <dialog id="listing-dialog" class="listing-dialog">
+      <button class="dialog-close" type="button" id="close-dialog" aria-label="Fechar">x</button>
+      <div id="dialog-content"></div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="src/marketplace-core.js"></script>
+    <script src="src/app.js"></script>
+  </body>
+</html>
