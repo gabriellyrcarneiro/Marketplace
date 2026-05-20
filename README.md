@@ -184,3 +184,6 @@ Em uma evolução futura, a mesma ideia poderia virar uma aplicação com backen
 ## Status
 
 Projeto funcional, responsivo e com dados de demonstração locais.
+
+## Feito por
+**Gabrielly Rodrigues**
